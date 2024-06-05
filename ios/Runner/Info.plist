@@ -26,6 +26,10 @@
 		<true/>
 		<key>UILaunchStoryboardName</key>
 		<string>LaunchScreen</string>
+		<key>NSPhotoLibraryUsageDescription</key>
+		<string>O usuario precisa acessa a biblioteca para trocar sua foto de usuario se for necessario</string>
+		<key>NSLocationAlwaysAndWhenInUseUsageDescription</key>
+		<string>O aplicativo precisa acessa a localizacao para mostrar as lojas proximas do usuario</string>
 		<key>UIMainStoryboardFile</key>
 		<string>Main</string>
 		<key>UISupportedInterfaceOrientations</key>
