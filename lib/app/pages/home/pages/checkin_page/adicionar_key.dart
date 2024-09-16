@@ -190,7 +190,6 @@ class _AdicionarKeyState extends State<AdicionarKey> {
   Future<void> _entregarNfsPortaria(BuildContext context) async {
     bool confirmDelete = false;
     bool isDeleteAccountChecked = false;
-
     await showDialog(
       context: context,
       builder: (BuildContext context) {
@@ -445,11 +444,10 @@ class _AdicionarKeyState extends State<AdicionarKey> {
                                           if (apiResponse!['data'] == 'ok') {
                                             await Nf_compra()
                                                 .select()
-                                                .where('id = ${notasFiscais}')                                              
+                                                .where('id = ${notasFiscais}')
                                                 .delete();
                                             setState(() {
                                               notasFiscais.removeAt(index);
-                                              
                                             });
                                           } else {
                                             setState(() {

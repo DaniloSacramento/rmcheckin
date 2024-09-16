@@ -1,7 +1,5 @@
 // ignore_for_file: public_member_api_docs, sort_constructors_first
 import 'dart:convert';
-
-import 'package:brasil_fields/brasil_fields.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:http/http.dart' as http;
@@ -10,7 +8,7 @@ import 'package:rmcheckin/app/models/motorista_auth_model.dart';
 import 'package:rmcheckin/app/models/veiculo_auth_model.dart';
 import 'package:rmcheckin/app/pages/home/pages/checkin_page/adicionar_key.dart';
 import 'package:rmcheckin/app/pages/home/pages/checkin_page/atualizar_caminhao.dart';
-import 'package:rmcheckin/app/services/registrar_veiculo_service.dart';
+
 import 'package:rmcheckin/app/widget/app_color.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
@@ -43,7 +41,8 @@ class _SelecionarVeiculoState extends State<SelecionarVeiculo> {
   bool loadingData = false;
 
   Future<void> motoristaUser() async {
-    final SharedPreferences sharedPreferences = await SharedPreferences.getInstance();
+    final SharedPreferences sharedPreferences =
+        await SharedPreferences.getInstance();
     final result = sharedPreferences.getString("data");
     if (result != null) {
       if (jsonDecode(result).containsKey('data')) {
@@ -65,9 +64,9 @@ class _SelecionarVeiculoState extends State<SelecionarVeiculo> {
     super.initState();
     // update();
     motoristaUser();
- 
-      obterTiposVeiculos();
-    
+
+    obterTiposVeiculos();
+
     print('ID da Loja Selecionada: ${widget.selectedLojaId}');
   }
 
@@ -126,7 +125,10 @@ class _SelecionarVeiculoState extends State<SelecionarVeiculo> {
             Text(
               'Selecione o seu Veiculo:',
               style: GoogleFonts.dosis(
-                textStyle: TextStyle(color: darkBlueColor, fontSize: 24, fontWeight: FontWeight.bold),
+                textStyle: TextStyle(
+                    color: darkBlueColor,
+                    fontSize: 24,
+                    fontWeight: FontWeight.bold),
               ),
             ),
             SizedBox(
@@ -162,21 +164,21 @@ class _SelecionarVeiculoState extends State<SelecionarVeiculo> {
                     backgroundColor: yellowColor,
                   ),
                   onPressed: () async {
-          Navigator.push(
-  context,
-  MaterialPageRoute(
-    builder: (context) => AtualizarCaminhao(
-      update: () async {
-        await motoristaUser(); // Atualiza os dados do usuário
-        await obterTiposVeiculos(); // Chama a API para obter os veículos atualizados
-        setState(() {}); // Atualiza a interface
-      },
-      selectedLojaId: widget.selectedLojaId,
-    ),
-  ),
-).then((value) async {
-  await motoristaUser(); // Atualiza os dados do usuário quando a tela voltar
-});
+                    Navigator.push(
+                      context,
+                      MaterialPageRoute(
+                        builder: (context) => AtualizarCaminhao(
+                          update: () async {
+                            await motoristaUser(); // Atualiza os dados do usuário
+                            await obterTiposVeiculos(); // Chama a API para obter os veículos atualizados
+                            setState(() {}); // Atualiza a interface
+                          },
+                          selectedLojaId: widget.selectedLojaId,
+                        ),
+                      ),
+                    ).then((value) async {
+                      await motoristaUser(); // Atualiza os dados do usuário quando a tela voltar
+                    });
                   },
                   icon: const Icon(Icons.add),
                   label: const Text('Adicionar Veiculos'),

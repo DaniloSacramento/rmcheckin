@@ -53,7 +53,8 @@ class _CheckinPageState extends State<CheckinPage> {
   }
 
   _motoristaUser() async {
-    final SharedPreferences sharedPreferences = await SharedPreferences.getInstance();
+    final SharedPreferences sharedPreferences =
+        await SharedPreferences.getInstance();
     final result = await sharedPreferences.getString("data");
     if (jsonDecode(result!).containsKey('data')) {
       user = Motorista.fromMap(jsonDecode(result)['data']);
@@ -117,7 +118,8 @@ class _CheckinPageState extends State<CheckinPage> {
     );
   }
 
-  String calcularDiferencaHorasMinutos(DateTime dtChegada, DateTime? dtEntrada) {
+  String calcularDiferencaHorasMinutos(
+      DateTime dtChegada, DateTime? dtEntrada) {
     try {
       Duration diff;
       int horas = 0;
@@ -151,7 +153,9 @@ class _CheckinPageState extends State<CheckinPage> {
       DateTime dataChegada = DateTime.parse(dtChegada);
       DateTime dataAtual = DateTime.now();
 
-      if (dataChegada.year == dataAtual.year && dataChegada.month == dataAtual.month && dataChegada.day == dataAtual.day) {
+      if (dataChegada.year == dataAtual.year &&
+          dataChegada.month == dataAtual.month &&
+          dataChegada.day == dataAtual.day) {
         return DateFormat('HH:mm').format(dataChegada);
       } else {
         return DateFormat('dd/MM/yyyy HH:mm').format(dataChegada);
@@ -203,7 +207,10 @@ class _CheckinPageState extends State<CheckinPage> {
                   Text(
                     'Olá, $primeiroNome',
                     style: GoogleFonts.dosis(
-                      textStyle: TextStyle(fontSize: 26, color: darkBlueColor, fontWeight: FontWeight.bold),
+                      textStyle: TextStyle(
+                          fontSize: 26,
+                          color: darkBlueColor,
+                          fontWeight: FontWeight.bold),
                     ),
                   ),
                 ],
@@ -218,14 +225,20 @@ class _CheckinPageState extends State<CheckinPage> {
                     onPressed: () async {
                       _timer.cancel();
 
-                      await Navigator.push(context, MaterialPageRoute(builder: (context) => const IniciarCheckin()));
+                      await Navigator.push(
+                          context,
+                          MaterialPageRoute(
+                              builder: (context) => const IniciarCheckin()));
 
                       atualizarTela30s();
                     },
                     child: Text(
                       'Iniciar um novo Checkin',
                       style: GoogleFonts.dosis(
-                        textStyle: TextStyle(fontSize: 18, color: darkBlueColor, fontWeight: FontWeight.bold),
+                        textStyle: TextStyle(
+                            fontSize: 18,
+                            color: darkBlueColor,
+                            fontWeight: FontWeight.bold),
                       ),
                     ),
                   ),
@@ -268,7 +281,6 @@ class _CheckinPageState extends State<CheckinPage> {
             height: 150,
             width: 150,
           ),
-          
           centerTitle: true,
         ),
         body: Padding(
@@ -277,7 +289,6 @@ class _CheckinPageState extends State<CheckinPage> {
             mainAxisAlignment: MainAxisAlignment.start,
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
-          
               Row(
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 crossAxisAlignment: CrossAxisAlignment.start,
@@ -285,7 +296,10 @@ class _CheckinPageState extends State<CheckinPage> {
                   Text(
                     'Olá, $primeiroNome',
                     style: GoogleFonts.dosis(
-                      textStyle: TextStyle(fontSize: 26, color: darkBlueColor, fontWeight: FontWeight.bold),
+                      textStyle: TextStyle(
+                          fontSize: 26,
+                          color: darkBlueColor,
+                          fontWeight: FontWeight.bold),
                     ),
                   ),
                 ],
@@ -300,14 +314,20 @@ class _CheckinPageState extends State<CheckinPage> {
                     onPressed: () async {
                       _timer.cancel();
 
-                      await Navigator.push(context, MaterialPageRoute(builder: (context) => const IniciarCheckin()));
+                      await Navigator.push(
+                          context,
+                          MaterialPageRoute(
+                              builder: (context) => const IniciarCheckin()));
 
                       atualizarTela30s();
                     },
                     child: Text(
                       'Iniciar um novo Checkin',
                       style: GoogleFonts.dosis(
-                        textStyle: TextStyle(fontSize: 18, color: darkBlueColor, fontWeight: FontWeight.bold),
+                        textStyle: TextStyle(
+                            fontSize: 18,
+                            color: darkBlueColor,
+                            fontWeight: FontWeight.bold),
                       ),
                     ),
                   ),
@@ -336,16 +356,24 @@ class _CheckinPageState extends State<CheckinPage> {
                   child: ListView.builder(
                       itemCount: checkinsSalvos?.length,
                       itemBuilder: (context, index) {
-                        final reversedIndex = checkinsSalvos!.length - 1 - index;
+                        final reversedIndex =
+                            checkinsSalvos!.length - 1 - index;
                         final checkInId = checkinsSalvos?[reversedIndex].id;
-                        final fornecedorDesc = checkinsSalvos?[reversedIndex].fornecedorDesc ?? "Nome não disponível";
+                        final fornecedorDesc =
+                            checkinsSalvos?[reversedIndex].fornecedorDesc ??
+                                "Nome não disponível";
                         final status = checkinsSalvos?[reversedIndex].status;
-                        final statusDesc = checkinsSalvos?[reversedIndex].statusDesc;
-                        final rede = checkinsSalvos?[reversedIndex].grupoEmpresarialDesc;
+                        final statusDesc =
+                            checkinsSalvos?[reversedIndex].statusDesc;
+                        final rede =
+                            checkinsSalvos?[reversedIndex].grupoEmpresarialDesc;
                         final loja = checkinsSalvos?[reversedIndex].lojaDesc;
-                        final dtChegada = checkinsSalvos?[reversedIndex].dtChegada;
-                        final dtEntrada = checkinsSalvos?[reversedIndex].dtEntrada;
-                        final doca = checkinsSalvos?[reversedIndex].docaDesc ?? 'Doca ainda não disponível';
+                        final dtChegada =
+                            checkinsSalvos?[reversedIndex].dtChegada;
+                        final dtEntrada =
+                            checkinsSalvos?[reversedIndex].dtEntrada;
+                        final doca = checkinsSalvos?[reversedIndex].docaDesc ??
+                            'Doca ainda não disponível';
                         return Column(
                           crossAxisAlignment: CrossAxisAlignment.start,
                           children: [
@@ -366,21 +394,24 @@ class _CheckinPageState extends State<CheckinPage> {
                             SizedBox(
                               width: MediaQuery.of(context).size.width,
                               child: GestureDetector(
-                                onTap: () {
+                                onTap: () { 
                                   pegarIdNf(checkInId);
                                   showDialog(
                                     context: context,
                                     builder: (BuildContext context) {
                                       return AlertDialog(
                                         shape: RoundedRectangleBorder(
-                                          borderRadius: BorderRadius.circular(16.0),
+                                          borderRadius:
+                                              BorderRadius.circular(16.0),
                                         ),
                                         title: Row(
-                                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                                          mainAxisAlignment:
+                                              MainAxisAlignment.spaceBetween,
                                           children: [
                                             Text(
                                               loja.toString(),
-                                              style: TextStyle(fontWeight: FontWeight.bold),
+                                              style: TextStyle(
+                                                  fontWeight: FontWeight.bold),
                                             ),
                                             IconButton(
                                               color: darkBlueColor,
@@ -399,70 +430,117 @@ class _CheckinPageState extends State<CheckinPage> {
                                               children: [
                                                 ListView.builder(
                                                   shrinkWrap: true,
-                                                  physics: NeverScrollableScrollPhysics(), // Desativar rolagem do ListView
-                                                  itemCount: nfCompraSalvos?.length ?? 0,
-                                                  itemBuilder: (context, index) {
-                                                    if (nfCompraSalvos != null && index < nfCompraSalvos!.length) {
-                                                      final nfCompra = nfCompraSalvos![index];
-                                                      final fornecedorDesc = nfCompra.fornecedorDesc ?? "Nome não disponível";
-                                                      final numNf = nfCompra.numNf;
-                                                      final serieNf = nfCompra.serieNf;
-                                                      final status = nfCompra.statusDesc;
+                                                  physics:
+                                                      NeverScrollableScrollPhysics(), // Desativar rolagem do ListView
+                                                  itemCount:
+                                                      nfCompraSalvos?.length ??
+                                                          0,
+                                                  itemBuilder:
+                                                      (context, index) {
+                                                    if (nfCompraSalvos !=
+                                                            null &&
+                                                        index <
+                                                            nfCompraSalvos!
+                                                                .length) {
+                                                      final nfCompra =
+                                                          nfCompraSalvos![
+                                                              index];
+                                                      final fornecedorDesc = nfCompra
+                                                              .fornecedorDesc ??
+                                                          "Nome não disponível";
+                                                      final numNf =
+                                                          nfCompra.numNf;
+                                                      final serieNf =
+                                                          nfCompra.serieNf;
+                                                      final status =
+                                                          nfCompra.statusDesc;
                                                       return Column(
-                                                        crossAxisAlignment: CrossAxisAlignment.start,
+                                                        crossAxisAlignment:
+                                                            CrossAxisAlignment
+                                                                .start,
                                                         children: [
                                                           Padding(
-                                                            padding: const EdgeInsets.all(10.0),
+                                                            padding:
+                                                                const EdgeInsets
+                                                                    .all(10.0),
                                                             child: Column(
-                                                              crossAxisAlignment: CrossAxisAlignment.start,
+                                                              crossAxisAlignment:
+                                                                  CrossAxisAlignment
+                                                                      .start,
                                                               children: [
                                                                 Text(
                                                                   "$fornecedorDesc",
-                                                                  style: TextStyle(
-                                                                    fontSize: 18.0,
-                                                                    fontWeight: FontWeight.bold,
-                                                                    color: darkBlueColor,
+                                                                  style:
+                                                                      TextStyle(
+                                                                    fontSize:
+                                                                        18.0,
+                                                                    fontWeight:
+                                                                        FontWeight
+                                                                            .bold,
+                                                                    color:
+                                                                        darkBlueColor,
                                                                   ),
                                                                 ),
-                                                                const SizedBox(height: 8),
+                                                                const SizedBox(
+                                                                    height: 8),
                                                                 Row(
-                                                                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                                                                  mainAxisAlignment:
+                                                                      MainAxisAlignment
+                                                                          .spaceBetween,
                                                                   children: [
                                                                     Text(
                                                                       'NF',
-                                                                      style: TextStyle(
-                                                                        fontSize: 18.0,
-                                                                        fontWeight: FontWeight.bold,
-                                                                        color: darkBlueColor,
+                                                                      style:
+                                                                          TextStyle(
+                                                                        fontSize:
+                                                                            18.0,
+                                                                        fontWeight:
+                                                                            FontWeight.bold,
+                                                                        color:
+                                                                            darkBlueColor,
                                                                       ),
                                                                     ),
                                                                     Text(
                                                                       '$numNf - $serieNf',
-                                                                      style: TextStyle(
-                                                                        fontSize: 16.0,
-                                                                        color: darkBlueColor,
+                                                                      style:
+                                                                          TextStyle(
+                                                                        fontSize:
+                                                                            16.0,
+                                                                        color:
+                                                                            darkBlueColor,
                                                                       ),
                                                                     ),
                                                                   ],
                                                                 ),
-                                                                const SizedBox(height: 8),
+                                                                const SizedBox(
+                                                                    height: 8),
                                                                 Row(
-                                                                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                                                                  mainAxisAlignment:
+                                                                      MainAxisAlignment
+                                                                          .spaceBetween,
                                                                   children: [
                                                                     Text(
                                                                       'Status',
-                                                                      style: TextStyle(
-                                                                        fontSize: 18.0,
-                                                                        fontWeight: FontWeight.bold,
-                                                                        color: darkBlueColor,
+                                                                      style:
+                                                                          TextStyle(
+                                                                        fontSize:
+                                                                            18.0,
+                                                                        fontWeight:
+                                                                            FontWeight.bold,
+                                                                        color:
+                                                                            darkBlueColor,
                                                                       ),
                                                                     ),
                                                                     Expanded(
-                                                                      child: Text(
+                                                                      child:
+                                                                          Text(
                                                                         "$status",
-                                                                        style: TextStyle(
-                                                                          fontSize: 16.0,
-                                                                          color: darkBlueColor,
+                                                                        style:
+                                                                            TextStyle(
+                                                                          fontSize:
+                                                                              16.0,
+                                                                          color:
+                                                                              darkBlueColor,
                                                                         ),
                                                                       ),
                                                                     ),
@@ -471,8 +549,19 @@ class _CheckinPageState extends State<CheckinPage> {
                                                               ],
                                                             ),
                                                           ),
-                                                          if (index != nfCompraSalvos!.length - 1) SizedBox(height: 10),
-                                                          if (index != nfCompraSalvos!.length - 1) Divider(color: Colors.black),
+                                                          if (index !=
+                                                              nfCompraSalvos!
+                                                                      .length -
+                                                                  1)
+                                                            SizedBox(
+                                                                height: 10),
+                                                          if (index !=
+                                                              nfCompraSalvos!
+                                                                      .length -
+                                                                  1)
+                                                            Divider(
+                                                                color: Colors
+                                                                    .black),
                                                         ],
                                                       );
                                                     } else {
@@ -496,21 +585,26 @@ class _CheckinPageState extends State<CheckinPage> {
                                   child: Padding(
                                     padding: const EdgeInsets.all(16.0),
                                     child: Column(
-                                      crossAxisAlignment: CrossAxisAlignment.start,
+                                      crossAxisAlignment:
+                                          CrossAxisAlignment.start,
                                       children: [
                                         Row(
-                                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                                          mainAxisAlignment:
+                                              MainAxisAlignment.spaceBetween,
                                           children: [
                                             Expanded(
                                               child: Column(
-                                                mainAxisAlignment: MainAxisAlignment.start,
-                                                crossAxisAlignment: CrossAxisAlignment.start,
+                                                mainAxisAlignment:
+                                                    MainAxisAlignment.start,
+                                                crossAxisAlignment:
+                                                    CrossAxisAlignment.start,
                                                 children: [
                                                   const Text(
                                                     'Rede',
                                                     style: TextStyle(
                                                       fontSize: 18.0,
-                                                      fontWeight: FontWeight.bold,
+                                                      fontWeight:
+                                                          FontWeight.bold,
                                                       color: Colors.black87,
                                                     ),
                                                   ),
@@ -529,13 +623,15 @@ class _CheckinPageState extends State<CheckinPage> {
                                                     'CheckIn',
                                                     style: TextStyle(
                                                       fontSize: 18.0,
-                                                      fontWeight: FontWeight.bold,
+                                                      fontWeight:
+                                                          FontWeight.bold,
                                                       color: Colors.black87,
                                                     ),
                                                   ),
                                                   const SizedBox(height: 4.0),
                                                   Text(
-                                                    formatarDataChegada(dtChegada.toString()),
+                                                    formatarDataChegada(
+                                                        dtChegada.toString()),
                                                   ),
                                                   const SizedBox(
                                                     height: 12,
@@ -544,7 +640,8 @@ class _CheckinPageState extends State<CheckinPage> {
                                                     'Doca',
                                                     style: TextStyle(
                                                       fontSize: 18.0,
-                                                      fontWeight: FontWeight.bold,
+                                                      fontWeight:
+                                                          FontWeight.bold,
                                                       color: Colors.black87,
                                                     ),
                                                   ),
@@ -558,15 +655,18 @@ class _CheckinPageState extends State<CheckinPage> {
                                             ),
                                             Expanded(
                                               child: Padding(
-                                                padding: const EdgeInsets.all(30.0),
+                                                padding:
+                                                    const EdgeInsets.all(30.0),
                                                 child: Column(
-                                                  crossAxisAlignment: CrossAxisAlignment.start,
+                                                  crossAxisAlignment:
+                                                      CrossAxisAlignment.start,
                                                   children: [
                                                     const Text(
                                                       'Loja',
                                                       style: TextStyle(
                                                         fontSize: 18.0,
-                                                        fontWeight: FontWeight.bold,
+                                                        fontWeight:
+                                                            FontWeight.bold,
                                                         color: Colors.black87,
                                                       ),
                                                     ),
@@ -579,12 +679,15 @@ class _CheckinPageState extends State<CheckinPage> {
                                                       'Espera',
                                                       style: TextStyle(
                                                         fontSize: 18.0,
-                                                        fontWeight: FontWeight.bold,
+                                                        fontWeight:
+                                                            FontWeight.bold,
                                                         color: Colors.black87,
                                                       ),
                                                     ),
                                                     Text(
-                                                      calcularDiferencaHorasMinutos(dtChegada!, dtEntrada),
+                                                      calcularDiferencaHorasMinutos(
+                                                          dtChegada!,
+                                                          dtEntrada),
                                                     ),
                                                     const SizedBox(
                                                       height: 12,
@@ -596,7 +699,8 @@ class _CheckinPageState extends State<CheckinPage> {
                                           ],
                                         ),
                                         Column(
-                                          crossAxisAlignment: CrossAxisAlignment.start,
+                                          crossAxisAlignment:
+                                              CrossAxisAlignment.start,
                                           children: [
                                             const Text(
                                               'Status',
@@ -610,7 +714,8 @@ class _CheckinPageState extends State<CheckinPage> {
                                             Row(
                                               children: [
                                                 Padding(
-                                                  padding: const EdgeInsets.only(
+                                                  padding:
+                                                      const EdgeInsets.only(
                                                     right: 8.0,
                                                   ),
                                                   child: Icon(
@@ -676,7 +781,9 @@ class _CheckinPageState extends State<CheckinPage> {
         """,
       ]
           .map(
-            (e) => e.replaceAll(RegExp(r'^\s+', multiLine: true), " ").replaceAll(RegExp(r'\n'), ""),
+            (e) => e
+                .replaceAll(RegExp(r'^\s+', multiLine: true), " ")
+                .replaceAll(RegExp(r'\n'), ""),
           )
           .toList(),
     );
